@@ -41,7 +41,7 @@ public class BaseInterceptor implements Interceptor {
 
         LOGGE.info("UserAgent: {}", request.userAgent());
         LOGGE.info("用户访问地址: {}, 来路地址: {}", uri, ip);
-
+        LOGGE.info("if install value={}", TaleConst.INSTALL);
         if (!TaleConst.INSTALL && !uri.startsWith("/install")) {
             response.go("/install");
             return false;

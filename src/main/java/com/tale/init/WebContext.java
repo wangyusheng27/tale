@@ -18,12 +18,15 @@ import com.tale.ext.AdminCommons;
 import com.tale.ext.Commons;
 import com.tale.ext.JetTag;
 import com.tale.ext.Theme;
+import com.tale.interceptor.BaseInterceptor;
 import com.tale.model.ExtSql2o;
 import com.tale.service.OptionsService;
 import com.tale.service.SiteService;
 import com.tale.utils.RewriteUtils;
 import jetbrick.template.JetGlobalContext;
 import jetbrick.template.resolver.GlobalResolver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
 import java.io.File;
@@ -42,9 +45,12 @@ public class WebContext implements BeanProcessor, WebContextListener {
 
     @Inject
     private OptionsService optionsService;
+    private static final Logger LOGGE = LoggerFactory.getLogger(WebContext.class);
 
     @Override
     public void init(BConfig bConfig, ServletContext sec) {
+        LOGGE.info("init seq 1");
+
         JetbrickTemplateEngine templateEngine = new JetbrickTemplateEngine();
 
         List<String> macros = new ArrayList<>(8);

@@ -4,6 +4,8 @@ import com.blade.Blade;
 import com.blade.config.BConfig;
 import com.blade.kit.FileKit;
 import com.tale.controller.admin.AttachController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -19,10 +21,14 @@ import static com.blade.Blade.$;
  */
 public final class TaleLoader {
 
+    private static final Logger LOGGE = LoggerFactory.getLogger(TaleLoader.class);
+
     private TaleLoader() {
     }
 
     public static void init() {
+        LOGGE.info("init seq 2");
+
         BConfig bConfig = $().bConfig();
         loadPlugins(bConfig);
         loadThemes(bConfig);
@@ -45,7 +51,7 @@ public final class TaleLoader {
         }
     }
 
-    public static void loadTheme(String themePath){
+    public static void loadTheme(String themePath) {
         Blade.$().embedServer().addStatic(themePath + "/style.css", themePath + "/screenshot.png", themePath + "/static");
     }
 
